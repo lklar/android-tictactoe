@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/nameSelectionScreen">
+
+    <fragment
+        android:id="@+id/nameSelectionScreen"
+        android:name="com.example.tictactoe.ui.NameSelectionScreen"
+        android:label="fragment_name_selection_screen"
+        tools:layout="@layout/fragment_name_selection_screen" >
+        <action
+            android:id="@+id/action_nameSelectionScreen_to_mainScreen"
+            app:destination="@id/mainScreen" />
+        <action
+            android:id="@+id/action_nameSelectionScreen_to_aboutScreen"
+            app:destination="@id/aboutScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/mainScreen"
+        android:name="com.example.tictactoe.ui.MainScreen"
+        android:label="fragment_main_screen"
+        tools:layout="@layout/fragment_main_screen" >
+        <action
+            android:id="@+id/action_mainScreen_to_nameSelectionScreen"
+            app:destination="@id/nameSelectionScreen" />
+        <action
+            android:id="@+id/action_mainScreen_to_gameOutcomeDialog"
+            app:destination="@id/gameOutcomeDialog" />
+        <action
+            android:id="@+id/action_mainScreen_to_historyScreen"
+            app:destination="@id/historyScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutScreen"
+        android:name="com.example.tictactoe.ui.AboutScreen"
+        android:label="fragment_about_screen"
+        tools:layout="@layout/fragment_about_screen">
+        <action
+            android:id="@+id/action_aboutScreen_to_nameSelectionScreen"
+            app:destination="@id/nameSelectionScreen" />
+    </fragment>
+    <fragment
+        android:id="@+id/historyScreen"
+        android:name="com.example.tictactoe.ui.History"
+        android:label="fragment_history_screen"
+        tools:layout="@layout/fragment_history" >
+        <action
+            android:id="@+id/action_historyScreen_to_mainScreen"
+            app:destination="@id/mainScreen" />
+    </fragment>
+    <dialog
+        android:id="@+id/gameOutcomeDialog"
+        android:name="com.example.tictactoe.ui.GameOutcomeDialog">
+        <action
+            android:id="@+id/action_gameOutcomeDialog_to_mainScreen"
+            app:destination="@+id/mainScreen"/>
+    </dialog>
+
+</navigation>

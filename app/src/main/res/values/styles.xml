@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="victor">
+        <item name="android:fontFamily">sans-serif-black</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:background">@android:color/holo_orange_light</item>
+    </style>
+    <style name="loser">
+        <item name="android:fontFamily">sans-serif</item>
+    </style>
+    <style name="participant">
+        <item name="android:fontFamily">sans-serif</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+</resources>
