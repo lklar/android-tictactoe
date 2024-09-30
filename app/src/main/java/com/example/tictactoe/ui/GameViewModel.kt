@@ -1,5 +1,6 @@
 package com.example.tictactoe.ui
 
+import SingleLiveEvent
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -39,8 +40,8 @@ class GameViewModel: ViewModel() {
     private val _playerScores = MutableLiveData<Pair<Int, Int>>()
     val playerScores: LiveData<Pair<Int, Int>> = _playerScores
 
-    private val _gameOutcome = MutableLiveData<GameOutcome>()
-    val gameOutcome: LiveData<GameOutcome> = _gameOutcome
+    //private val _gameOutcome = MutableLiveData<GameOutcome>()
+    val gameOutcome = SingleLiveEvent<GameOutcome>()
 
     private val _previousGames = MutableLiveData<List<GameEntity>>()
     val previousGames: LiveData<List<GameEntity>> = _previousGames
@@ -90,7 +91,7 @@ class GameViewModel: ViewModel() {
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe { outcome ->
-                _gameOutcome.value = outcome
+                gameOutcome.value = outcome
                 playerManager.updateScoreOnGameOutcome(outcome)
                 viewModelScope.launch {
                     gameRepository.insert(
@@ -102,10 +103,6 @@ class GameViewModel: ViewModel() {
                 }
         }.let { compositeDisposable.add(it) }
 
-
-
-        //playerManager.players.first.name  = "Player 1"
-        //playerManager.players.second.name = "Player 2"
         playerManager.players.first.drawableId = R.drawable.ic_tictactoe_player1
         playerManager.players.second.drawableId = R.drawable.ic_tictactoe_player2
     }
