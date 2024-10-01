@@ -22,19 +22,26 @@
                 android:layout_height="wrap_content"
                 android:text="@string/history"
                 android:textAlignment="center"
-                android:textSize="34sp" />
+                android:textSize="34sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/returnButton"
+                />
 
             <ImageButton
                 android:id="@+id/returnButton"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
+                android:contentDescription="@string/return_button"
                 app:layout_constraintEnd_toEndOf="@+id/historyTitle"
+                app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/baseline_arrow_back_24" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:layout_weight="1"
             app:layout_behavior="@string/appbar_scrolling_view_behavior"
             tools:context="ui.RecyclerFragment">
 
@@ -45,6 +52,194 @@
                 tools:listitem="@layout/history_item" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/detailed_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/history_player_1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textSize="24sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/history_player_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAlignment="center"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/historyFieldTopLeft"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="15dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/button_top_left"
+                    android:cropToPadding="false"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_tictactoe_empty"
+                    app:layout_constraintBottom_toTopOf="@+id/historyFieldMiddleLeft"
+                    app:layout_constraintEnd_toStartOf="@+id/historyFieldTopCenter"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/historyFieldTopCenter"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="15dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/button_top_center"
+                    android:cropToPadding="false"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_tictactoe_empty"
+                    app:layout_constraintBottom_toTopOf="@+id/historyFieldMiddleCenter"
+                    app:layout_constraintEnd_toStartOf="@+id/historyFieldTopRight"
+                    app:layout_constraintStart_toEndOf="@+id/historyFieldTopLeft"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/historyFieldTopRight"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="15dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/button_top_right"
+                    android:cropToPadding="false"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_tictactoe_empty"
+                    app:layout_constraintBottom_toTopOf="@+id/historyFieldMiddleRight"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/historyFieldTopCenter"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/historyFieldMiddleLeft"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="15dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/button_middle_left"
+                    android:cropToPadding="false"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_tictactoe_empty"
+                    app:layout_constraintBottom_toTopOf="@+id/historyFieldBottomLeft"
+                    app:layout_constraintEnd_toStartOf="@+id/historyFieldMiddleCenter"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/historyFieldTopLeft" />
+
+                <ImageView
+                    android:id="@+id/historyFieldMiddleCenter"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="15dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/button_middle_center"
+                    android:cropToPadding="false"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_tictactoe_empty"
+                    app:layout_constraintBottom_toTopOf="@+id/historyFieldBottomCenter"
+                    app:layout_constraintEnd_toStartOf="@+id/historyFieldMiddleRight"
+                    app:layout_constraintStart_toEndOf="@+id/historyFieldMiddleLeft"
+                    app:layout_constraintTop_toBottomOf="@+id/historyFieldTopCenter" />
+
+                <ImageView
+                    android:id="@+id/historyFieldMiddleRight"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="15dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/button_middle_right"
+                    android:cropToPadding="false"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_tictactoe_empty"
+                    app:layout_constraintBottom_toTopOf="@+id/historyFieldBottomRight"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/historyFieldMiddleCenter"
+                    app:layout_constraintTop_toBottomOf="@+id/historyFieldTopRight" />
+
+                <ImageView
+                    android:id="@+id/historyFieldBottomLeft"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="15dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/button_bottom_left"
+                    android:cropToPadding="false"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_tictactoe_empty"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/historyFieldBottomCenter"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/historyFieldMiddleLeft" />
+
+                <ImageView
+                    android:id="@+id/historyFieldBottomCenter"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="15dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/button_bottom_center"
+                    android:cropToPadding="false"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_tictactoe_empty"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/historyFieldBottomRight"
+                    app:layout_constraintStart_toEndOf="@+id/historyFieldBottomLeft"
+                    app:layout_constraintTop_toBottomOf="@+id/historyFieldMiddleCenter" />
+
+                <ImageView
+                    android:id="@+id/historyFieldBottomRight"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_margin="15dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/button_bottom_right"
+                    android:cropToPadding="false"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_tictactoe_empty"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/historyFieldBottomCenter"
+                    app:layout_constraintTop_toBottomOf="@+id/historyFieldMiddleRight" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
     </LinearLayout>
 
 </layout>

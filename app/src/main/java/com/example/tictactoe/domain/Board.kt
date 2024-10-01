@@ -32,6 +32,10 @@ class Board {
             cellChangePublisher.onNext(CellChange(row, col, cellState))
         }
     }
+
+    fun getCells(): List<MutableList<CellState>> {
+        return cells
+    }
 }
 
 

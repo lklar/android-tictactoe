@@ -94,34 +94,7 @@ class Game() {
         return gameResult
     }
 
-//    fun checkWin(): GameState?
-//    {
-//        var lineCount = 0
-//        for (row in board)
-//        {
-//            if(row.all { it == currentPlayer })
-//                lineCount++
-//        }
-//        for (col in 0..2)
-//        {
-//            if(board.map { row -> row[col] }.all { it == currentPlayer })
-//                lineCount++
-//        }
-//        // Check diagonals
-//        if((0..2).all { board[it][it] == currentPlayer })
-//            lineCount++
-//        if((0..2).all { board[it][2-it] == currentPlayer })
-//            lineCount++
-//        if(lineCount != 0) {
-//            return if(currentPlayer == Players.PLAYER1) GameState.WIN_PLAYER_1 else GameState.WIN_PLAYER_2
-//        } else {
-//            // Check if there are still any empty cells left
-//            if(board.any {row -> row.any { it == null}}) {
-//                currentPlayer = if (currentPlayer == Players.PLAYER1) Players.PLAYER2 else Players.PLAYER1
-//            } else {
-//                return GameState.DRAW
-//            }
-//        }
-//        return null
-//    }
+    fun getBoard(): Board {
+        return board
+    }
 }

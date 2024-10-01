@@ -12,7 +12,7 @@ import com.example.tictactoe.data.db.GameEntity
 import com.example.tictactoe.databinding.HistoryItemBinding
 import com.example.tictactoe.domain.GameOutcome
 
-class GameEntityListAdapter : ListAdapter<GameEntity, GameEntityListAdapter.GameViewHolder>(GAME_ENTITY_COMPARATOR) {
+class GameEntityListAdapter(private val clickListener: (GameEntity?) -> Unit) : ListAdapter<GameEntity, GameEntityListAdapter.GameViewHolder>(GAME_ENTITY_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
         val binding = HistoryItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -21,14 +21,14 @@ class GameEntityListAdapter : ListAdapter<GameEntity, GameEntityListAdapter.Game
 
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
         val current = getItem(position)
-        holder.bind(current)
+        holder.bind(current, clickListener)
     }
 
     class GameViewHolder(private val binding: HistoryItemBinding) : RecyclerView.ViewHolder(binding.root) {
         private val player1TextView: TextView = binding.player1Name
         private val player2TextView: TextView = binding.player2Name
 
-        fun bind(gameEntity: GameEntity?) {
+        fun bind(gameEntity: GameEntity?, clickListener: (GameEntity?) -> Unit) {
             player1TextView.text  = gameEntity?.p1Name
             player2TextView.text = gameEntity?.p2Name
             val winnerView: TextView?
@@ -58,6 +58,8 @@ class GameEntityListAdapter : ListAdapter<GameEntity, GameEntityListAdapter.Game
                 textView.setTextAppearance(R.style.participant)
 
             }
+
+            binding.root.setOnClickListener { clickListener(gameEntity) }
         }
 
         companion object {

@@ -107,7 +107,8 @@ class GameViewModel: ViewModel() {
                     gameRepository.insert(
                         GameMapper.fromDomain(
                             playerManager.players,
-                            outcome
+                            outcome,
+                            gameManager.getGameBoard()
                         )
                     )
                 }

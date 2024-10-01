@@ -1,5 +1,7 @@
 package com.example.tictactoe.data.db
 
+import com.example.tictactoe.domain.Board
+import com.example.tictactoe.domain.CellState
 import com.example.tictactoe.domain.Game
 import com.example.tictactoe.domain.GameOutcome
 import com.example.tictactoe.domain.Player
@@ -8,13 +10,24 @@ import com.google.gson.Gson
 object GameMapper {
     private val gson = Gson()
 
-    fun fromDomain(players: Pair<Player, Player>, gameOutcome: GameOutcome): GameEntity {
+    fun fromDomain(players: Pair<Player, Player>, gameOutcome: GameOutcome, board: Board): GameEntity {
+        val boardString = board.getCells().joinToString(separator = "") { row ->
+            row.joinToString(separator = "") { cellState ->
+                when(cellState){
+                    CellState.PLAYER_1 -> "1"
+                    CellState.PLAYER_2 -> "2"
+                    CellState.EMPTY    -> "0"
+                }
+            }
+
+        }
         return GameEntity(
             p1Name  = players.first.name,
             p2Name  = players.second.name,
             p1Icon  = players.first.drawableId,
             p2Icon  = players.second.drawableId,
-            outcome = gameOutcome
+            outcome = gameOutcome,
+            board   = boardString
         )
             // board = gson.toJson(game.board),
     }

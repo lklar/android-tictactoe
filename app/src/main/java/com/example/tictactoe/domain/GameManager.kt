@@ -30,4 +30,8 @@ class GameManager() {
     fun fetchNextCellState(): Observable<CellState> {
         return game.fetchNextCellState()
     }
+
+    fun getGameBoard(): Board {
+        return game.getBoard()
+    }
 }

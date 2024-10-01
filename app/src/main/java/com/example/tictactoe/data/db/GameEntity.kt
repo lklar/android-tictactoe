@@ -12,5 +12,6 @@ class GameEntity (
     @ColumnInfo(name = "p1_icon")    val p1Icon: Int,
     @ColumnInfo(name = "p2_icon")    val p2Icon: Int,
     @ColumnInfo(name = "outcome")    val outcome: GameOutcome,
+    @ColumnInfo(name = "board")      val board: String,
     @PrimaryKey(autoGenerate = true) val id: Int = 0
 )

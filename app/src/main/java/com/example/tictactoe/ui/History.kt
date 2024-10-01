@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
@@ -19,10 +20,33 @@ import com.example.tictactoe.databinding.FragmentHistoryBinding
 class History : Fragment() {
     private lateinit var binding: FragmentHistoryBinding
     private val viewModel: GameViewModel by activityViewModels()
-    private var adapter = GameEntityListAdapter()
+    private lateinit var adapter: GameEntityListAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        adapter = GameEntityListAdapter { gameEntity ->
+            // Handle item click here
+            binding.historyPlayer1.text = gameEntity?.p1Name
+            binding.historyPlayer2.text = gameEntity?.p2Name
+            val imageViews = listOf(
+                binding.historyFieldTopLeft,
+                binding.historyFieldTopCenter,
+                binding.historyFieldTopRight,
+                binding.historyFieldMiddleLeft,
+                binding.historyFieldMiddleCenter,
+                binding.historyFieldMiddleRight,
+                binding.historyFieldBottomLeft,
+                binding.historyFieldBottomCenter,
+                binding.historyFieldBottomRight
+            )
+            gameEntity?.board?.toList()?.zip(imageViews)?.forEach { (cellStateChar, imageView) ->
+                when(cellStateChar) {
+                    '0' -> imageView.setImageResource(R.drawable.ic_tictactoe_empty)
+                    '1' -> imageView.setImageResource(R.drawable.ic_tictactoe_player1)
+                    '2' -> imageView.setImageResource(R.drawable.ic_tictactoe_player2)
+                }
+            }
+        }
         viewModel.previousGames.observe(this, Observer<List<GameEntity>> { previousGames ->
             adapter.submitList(previousGames)
         })
