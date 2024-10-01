@@ -9,12 +9,14 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.tictactoe.R
 import com.example.tictactoe.data.db.GameEntity
+import com.example.tictactoe.databinding.HistoryItemBinding
 import com.example.tictactoe.domain.GameOutcome
 
 class GameEntityListAdapter : ListAdapter<GameEntity, GameEntityListAdapter.GameViewHolder>(GAME_ENTITY_COMPARATOR) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GameViewHolder {
-        return GameViewHolder.create(parent)
+        val binding = HistoryItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return GameViewHolder.create(binding)
     }
 
     override fun onBindViewHolder(holder: GameViewHolder, position: Int) {
@@ -22,9 +24,9 @@ class GameEntityListAdapter : ListAdapter<GameEntity, GameEntityListAdapter.Game
         holder.bind(current)
     }
 
-    class GameViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        private val player1TextView: TextView = itemView.findViewById(R.id.player_1_name)
-        private val player2TextView: TextView = itemView.findViewById(R.id.player_2_name)
+    class GameViewHolder(private val binding: HistoryItemBinding) : RecyclerView.ViewHolder(binding.root) {
+        private val player1TextView: TextView = binding.player1Name
+        private val player2TextView: TextView = binding.player2Name
 
         fun bind(gameEntity: GameEntity?) {
             player1TextView.text  = gameEntity?.p1Name
@@ -59,10 +61,8 @@ class GameEntityListAdapter : ListAdapter<GameEntity, GameEntityListAdapter.Game
         }
 
         companion object {
-            fun create(parent: ViewGroup): GameViewHolder {
-                val view: View = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.history_item, parent, false)
-                return GameViewHolder(view)
+            fun create(binding: HistoryItemBinding): GameViewHolder {
+                return GameViewHolder(binding)
             }
         }
     }
