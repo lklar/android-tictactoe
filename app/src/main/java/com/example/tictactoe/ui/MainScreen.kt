@@ -1,6 +1,5 @@
 package com.example.tictactoe.ui
 
-import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -13,16 +12,11 @@ import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import com.example.tictactoe.R
 import com.example.tictactoe.TicTacToeApp
-import com.example.tictactoe.data.db.GameEntity
 import com.example.tictactoe.databinding.FragmentMainScreenBinding
 import com.example.tictactoe.domain.GameOutcome
 import kotlinx.coroutines.launch
 
 class MainScreen : Fragment() {
-
-    companion object {
-        fun newInstance() = MainScreen()
-    }
 
     private val viewModel: GameViewModel by activityViewModels()
 

@@ -30,37 +30,31 @@
 
                 <LinearLayout
                     android:id="@+id/player_1_display"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:baselineAligned="false"
+                    android:orientation="vertical"
                     android:textAlignment="center"
                     app:layout_constraintEnd_toStartOf="@+id/current_turn_display"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/player_name_1"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:text="TextView"
+                        android:textAlignment="center"
+                        android:textSize="24sp"
+                        android:visibility="visible" />
 
-                        <TextView
-                            android:id="@+id/player_name_1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="TextView"
-                            android:textAlignment="center"
-                            android:textSize="24sp"
-                            android:visibility="visible" />
-
-                        <TextView
-                            android:id="@+id/player_score_1"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="TextView"
-                            android:textAlignment="center" />
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/player_score_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TextView"
+                        android:textAlignment="center" />
 
                 </LinearLayout>
 
@@ -92,37 +86,29 @@
 
                 <LinearLayout
                     android:id="@+id/player_2_display"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
+                    android:orientation="vertical"
                     app:layout_constraintEnd_toStartOf="@+id/restart_button"
                     app:layout_constraintStart_toEndOf="@+id/current_turn_display"
                     app:layout_constraintTop_toTopOf="parent">
 
-                    <LinearLayout
+                    <TextView
+                        android:id="@+id/player_name_2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:orientation="vertical">
+                        android:text="TextView"
+                        android:textAlignment="center"
+                        android:textSize="24sp"
+                        android:visibility="visible" />
 
-                        <TextView
-                            android:id="@+id/player_name_2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:text="TextView"
-                            android:textAlignment="center"
-                            android:textSize="24sp"
-                            android:visibility="visible" />
-
-                        <TextView
-                            android:id="@+id/player_score_2"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="TextView"
-                            android:textAlignment="center" />
-
-                    </LinearLayout>
+                    <TextView
+                        android:id="@+id/player_score_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="TextView"
+                        android:textAlignment="center" />
 
                 </LinearLayout>
 

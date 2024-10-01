@@ -37,7 +37,7 @@ class AppModuleImpl(
     }
 
     override val gameManager: GameManager by lazy {
-         GameManager(gameRepository)
+         GameManager()
     }
 
     override val playerManager: PlayerManager by lazy {
