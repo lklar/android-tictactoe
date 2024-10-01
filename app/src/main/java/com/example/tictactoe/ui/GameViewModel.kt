@@ -1,12 +1,9 @@
 package com.example.tictactoe.ui
 
 import SingleLiveEvent
-import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.tictactoe.R
 import com.example.tictactoe.TicTacToeApp
@@ -40,8 +37,10 @@ class GameViewModel: ViewModel() {
     private val _playerScores = MutableLiveData<Pair<Int, Int>>()
     val playerScores: LiveData<Pair<Int, Int>> = _playerScores
 
-    //private val _gameOutcome = MutableLiveData<GameOutcome>()
     val gameOutcome = SingleLiveEvent<GameOutcome>()
+
+    private val _currentTurn = MutableLiveData<PlayerTurn>()
+    val currentTurn: LiveData<PlayerTurn> = _currentTurn
 
     private val _previousGames = MutableLiveData<List<GameEntity>>()
     val previousGames: LiveData<List<GameEntity>> = _previousGames
@@ -86,6 +85,17 @@ class GameViewModel: ViewModel() {
                 _changedCell.value = drawableCell
         }
         .let { compositeDisposable.add(it) }
+
+        gameManager.fetchNextCellState()
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe { nextCellState ->
+                when(nextCellState) {
+                    CellState.PLAYER_1 -> _currentTurn.value = PlayerTurn.PLAYER_1
+                    CellState.PLAYER_2 -> _currentTurn.value = PlayerTurn.PLAYER_2
+                    else -> {}
+                }
+        }.let { compositeDisposable.add(it) }
 
         gameManager.fetchGameOutcome()
             .subscribeOn(Schedulers.io())

@@ -3,7 +3,7 @@ package com.example.tictactoe.domain
 import io.reactivex.rxjava3.core.Observable
 import io.reactivex.rxjava3.core.Single
 import io.reactivex.rxjava3.disposables.CompositeDisposable
-
+import io.reactivex.rxjava3.subjects.PublishSubject
 
 
 class Game() {
@@ -11,6 +11,7 @@ class Game() {
     private var nextCellState: CellState = listOf(CellState.PLAYER_1, CellState.PLAYER_2).random()
     private val compositeDisposable = CompositeDisposable()
     private val playerCellChanges = board.cellChangePublisher.filter { cellChange -> cellChange.state != CellState.EMPTY }
+    private val nextCellStatePublisher = PublishSubject.create<CellState>()
 
     init {
         playerCellChanges.subscribe {
@@ -18,6 +19,7 @@ class Game() {
                 nextCellState = CellState.PLAYER_2
             else
                 nextCellState = CellState.PLAYER_1
+            nextCellStatePublisher.onNext(nextCellState)
         }.apply { compositeDisposable.add(this) }
     }
 
@@ -25,6 +27,7 @@ class Game() {
     {
         board.clear()
         nextCellState = listOf(CellState.PLAYER_1, CellState.PLAYER_2).random()
+        nextCellStatePublisher.onNext(nextCellState)
     }
 
     fun processTurn(row: Int, col: Int)
@@ -34,6 +37,10 @@ class Game() {
             col = col,
             cellState = nextCellState
         )
+    }
+
+    fun fetchNextCellState(): Observable<CellState> {
+        return nextCellStatePublisher
     }
 
     fun fetchCellChanges(): Observable<CellChange>

@@ -6,6 +6,16 @@
     <string name="version">Version:</string>
     <string name="developers">Developers:</string>
     <string name="history">History</string>
+    <string name="button_top_left">Top left field</string>
+    <string name="button_top_center">Top center field</string>
+    <string name="button_top_right">Top right field</string>
+    <string name="button_middle_left">Middle left field</string>
+    <string name="button_middle_center">Middle center field</string>
+    <string name="button_middle_right">Middle right field</string>
+    <string name="button_bottom_left">Bottom left field</string>
+    <string name="button_bottom_center">Bottom center field</string>
+    <string name="button_bottom_right">Bottom right field</string>
+    <string name="current_player_turn">Current </string>
     <string-array name="developers_array">
         <item>Lennart Klar</item>
         <item>Github Copilot</item>

@@ -31,4 +31,8 @@ class GameManager(
     fun fetchGameOutcome(): Observable<GameOutcome> {
         return gameOutcomePublisher.switchMap { it.toObservable() }
     }
+
+    fun fetchNextCellState(): Observable<CellState> {
+        return game.fetchNextCellState()
+    }
 }

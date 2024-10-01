@@ -48,6 +48,14 @@ class MainScreen : Fragment() {
         viewModel.gameOutcome.observe(this, Observer<GameOutcome> { gameOutcome ->
             findNavController().navigate(R.id.action_mainScreen_to_gameOutcomeDialog)
         })
+
+        viewModel.currentTurn.observe(this, Observer<PlayerTurn> { currentTurn ->
+            when(currentTurn){
+                PlayerTurn.PLAYER_1 -> binding.currentTurnImage.setImageResource(R.drawable.ic_arrow_left)
+                PlayerTurn.PLAYER_2 -> binding.currentTurnImage.setImageResource(R.drawable.ic_arrow_right)
+            }
+
+        })
     }
 
     override fun onCreateView(
@@ -80,15 +88,15 @@ class MainScreen : Fragment() {
 
     private fun getButtons(binding: FragmentMainScreenBinding): List<ImageButton> {
         return listOf(
-            binding.imageButton1,
-            binding.imageButton2,
-            binding.imageButton3,
-            binding.imageButton4,
-            binding.imageButton5,
-            binding.imageButton6,
-            binding.imageButton7,
-            binding.imageButton8,
-            binding.imageButton9
+            binding.buttonTopLeft,
+            binding.buttonTopCenter,
+            binding.buttonTopRight,
+            binding.buttonMiddleLeft,
+            binding.buttonMiddleCenter,
+            binding.buttonMiddleRight,
+            binding.buttonBottomLeft,
+            binding.buttonBottomCenter,
+            binding.buttonBottomRight
         )
     }
 }

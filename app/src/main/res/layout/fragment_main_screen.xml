@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="viewmodel" type="com.example.tictactoe.ui.GameViewModel"/>
+
+        <variable
+            name="viewmodel"
+            type="com.example.tictactoe.ui.GameViewModel" />
     </data>
 
 
@@ -25,49 +28,103 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/player_name_1"
+                <LinearLayout
+                    android:id="@+id/player_1_display"
                     android:layout_width="0dp"
-                    android:layout_height="28dp"
-                    android:layout_weight="1"
-                    android:text="TextView"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     android:textAlignment="center"
-                    android:textSize="24sp"
-                    android:visibility="visible"
-                    app:layout_constraintEnd_toStartOf="@id/player_name_2"
+                    app:layout_constraintEnd_toStartOf="@+id/current_turn_display"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/player_name_2"
-                    android:layout_width="0dp"
-                    android:layout_height="27dp"
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/player_name_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="TextView"
+                            android:textAlignment="center"
+                            android:textSize="24sp"
+                            android:visibility="visible" />
+
+                        <TextView
+                            android:id="@+id/player_score_1"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="TextView"
+                            android:textAlignment="center" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/current_turn_display"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:text="TextView"
-                    android:textAlignment="center"
-                    android:textSize="24sp"
-                    android:visibility="visible"
+                    android:orientation="vertical"
+                    app:layout_constraintEnd_toStartOf="@+id/player_2_display"
+                    app:layout_constraintStart_toEndOf="@+id/player_1_display"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        android:id="@+id/current_turn_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/current_player_turn"
+                        android:textAlignment="center" />
+
+                    <ImageView
+                        android:id="@+id/current_turn_image"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/ic_arrow_left" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/player_2_display"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
                     app:layout_constraintEnd_toStartOf="@+id/restart_button"
-                    app:layout_constraintStart_toEndOf="@+id/player_name_1"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintStart_toEndOf="@+id/current_turn_display"
+                    app:layout_constraintTop_toTopOf="parent">
 
-                <TextView
-                    android:id="@+id/player_score_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    app:layout_constraintEnd_toEndOf="@+id/player_name_1"
-                    app:layout_constraintStart_toStartOf="@+id/player_name_1"
-                    app:layout_constraintTop_toBottomOf="@+id/player_name_1" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/player_score_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="TextView"
-                    app:layout_constraintEnd_toEndOf="@+id/player_name_2"
-                    app:layout_constraintStart_toStartOf="@+id/player_name_2"
-                    app:layout_constraintTop_toBottomOf="@+id/player_name_2" />
+                        <TextView
+                            android:id="@+id/player_name_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="TextView"
+                            android:textAlignment="center"
+                            android:textSize="24sp"
+                            android:visibility="visible" />
+
+                        <TextView
+                            android:id="@+id/player_score_2"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="TextView"
+                            android:textAlignment="center" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
                 <ImageButton
                     android:id="@+id/restart_button"
@@ -98,134 +155,161 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <ImageButton
-                android:id="@+id/imageButton1"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:adjustViewBounds="true"
-                android:padding="20dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_tictactoe_empty"
-                app:layout_constraintBottom_toTopOf="@+id/imageButton4"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@+id/imageButton2"
-                app:layout_constraintTop_toBottomOf="@+id/top_bar" />
-
-            <ImageButton
-                android:id="@+id/imageButton2"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:adjustViewBounds="true"
-                android:padding="20dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_tictactoe_empty"
-                app:layout_constraintBottom_toTopOf="@+id/imageButton5"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintLeft_toRightOf="@+id/imageButton1"
-                app:layout_constraintRight_toLeftOf="@+id/imageButton3"
-                app:layout_constraintTop_toBottomOf="@+id/top_bar" />
-
-            <ImageButton
-                android:id="@+id/imageButton3"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:adjustViewBounds="true"
-                android:padding="20dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_tictactoe_empty"
-                app:layout_constraintBottom_toTopOf="@+id/imageButton6"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintLeft_toRightOf="@+id/imageButton2"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/top_bar" />
-
-            <!-- Second row -->
-            <ImageButton
-                android:id="@+id/imageButton4"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:adjustViewBounds="true"
-                android:padding="20dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_tictactoe_empty"
-                app:layout_constraintBottom_toTopOf="@+id/imageButton7"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@+id/imageButton5"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton1" />
-
-            <ImageButton
-                android:id="@+id/imageButton5"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:adjustViewBounds="true"
-                android:padding="20dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_tictactoe_empty"
-                app:layout_constraintBottom_toTopOf="@+id/imageButton8"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintLeft_toRightOf="@+id/imageButton4"
-                app:layout_constraintRight_toLeftOf="@+id/imageButton6"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton2" />
-
-            <ImageButton
-                android:id="@+id/imageButton6"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:adjustViewBounds="true"
-                android:padding="20dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_tictactoe_empty"
-                app:layout_constraintBottom_toTopOf="@+id/imageButton9"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintLeft_toRightOf="@+id/imageButton5"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton3" />
-
-            <!-- Third row -->
-            <ImageButton
-                android:id="@+id/imageButton7"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:adjustViewBounds="true"
-                android:padding="20dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_tictactoe_empty"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/ic_tictactoe_board"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toLeftOf="@+id/imageButton8"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton4" />
+                app:layout_constraintDimensionRatio="1"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/top_bar">
 
-            <ImageButton
-                android:id="@+id/imageButton8"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:adjustViewBounds="true"
-                android:padding="20dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_tictactoe_empty"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintLeft_toRightOf="@+id/imageButton7"
-                app:layout_constraintRight_toLeftOf="@+id/imageButton9"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton5" />
+                <ImageButton
+                    android:id="@+id/buttonTopLeft"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/button_top_left"
+                    android:cropToPadding="false"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_tictactoe_empty"
+                    app:layout_constraintBottom_toTopOf="@+id/buttonMiddleLeft"
+                    app:layout_constraintEnd_toStartOf="@+id/buttonTopCenter"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <ImageButton
-                android:id="@+id/imageButton9"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:adjustViewBounds="true"
-                android:padding="20dp"
-                android:scaleType="fitCenter"
-                android:src="@drawable/ic_tictactoe_empty"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintLeft_toRightOf="@+id/imageButton8"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imageButton6" />
+                <ImageButton
+                    android:id="@+id/buttonTopCenter"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/button_top_center"
+                    android:cropToPadding="false"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_tictactoe_empty"
+                    app:layout_constraintBottom_toTopOf="@+id/buttonMiddleCenter"
+                    app:layout_constraintEnd_toStartOf="@+id/buttonTopRight"
+                    app:layout_constraintStart_toEndOf="@+id/buttonTopLeft"
+                    app:layout_constraintTop_toTopOf="parent" />
 
+                <ImageButton
+                    android:id="@+id/buttonTopRight"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/button_top_right"
+                    android:cropToPadding="false"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_tictactoe_empty"
+                    app:layout_constraintBottom_toTopOf="@+id/buttonMiddleRight"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/buttonTopCenter"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/buttonMiddleLeft"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/button_middle_left"
+                    android:cropToPadding="false"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_tictactoe_empty"
+                    app:layout_constraintBottom_toTopOf="@+id/buttonBottomLeft"
+                    app:layout_constraintEnd_toStartOf="@+id/buttonMiddleCenter"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/buttonTopLeft" />
+
+                <ImageButton
+                    android:id="@+id/buttonMiddleCenter"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/button_middle_center"
+                    android:cropToPadding="false"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_tictactoe_empty"
+                    app:layout_constraintBottom_toTopOf="@+id/buttonBottomCenter"
+                    app:layout_constraintEnd_toStartOf="@+id/buttonMiddleRight"
+                    app:layout_constraintStart_toEndOf="@+id/buttonMiddleLeft"
+                    app:layout_constraintTop_toBottomOf="@+id/buttonTopCenter" />
+
+                <ImageButton
+                    android:id="@+id/buttonMiddleRight"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/button_middle_right"
+                    android:cropToPadding="false"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_tictactoe_empty"
+                    app:layout_constraintBottom_toTopOf="@+id/buttonBottomRight"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/buttonMiddleCenter"
+                    app:layout_constraintTop_toBottomOf="@+id/buttonTopRight" />
+
+                <ImageButton
+                    android:id="@+id/buttonBottomLeft"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/button_bottom_left"
+                    android:cropToPadding="false"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_tictactoe_empty"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/buttonBottomCenter"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/buttonMiddleLeft" />
+
+                <ImageButton
+                    android:id="@+id/buttonBottomCenter"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/button_bottom_center"
+                    android:cropToPadding="false"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_tictactoe_empty"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/buttonBottomRight"
+                    app:layout_constraintStart_toEndOf="@+id/buttonBottomLeft"
+                    app:layout_constraintTop_toBottomOf="@+id/buttonMiddleCenter" />
+
+                <ImageButton
+                    android:id="@+id/buttonBottomRight"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:layout_weight="1"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/button_bottom_right"
+                    android:cropToPadding="false"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/ic_tictactoe_empty"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/buttonBottomCenter"
+                    app:layout_constraintTop_toBottomOf="@+id/buttonMiddleRight" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </FrameLayout>
 </layout>
