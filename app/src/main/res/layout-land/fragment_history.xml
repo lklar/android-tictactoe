@@ -40,12 +40,14 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:baselineAligned="false"
+            android:orientation="horizontal">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
+                android:paddingEnd="20dp"
                 app:layout_behavior="@string/appbar_scrolling_view_behavior"
                 tools:context="ui.RecyclerFragment">
 
@@ -62,7 +64,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:orientation="vertical">
+                android:orientation="vertical"
+                android:paddingStart="20dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -81,9 +84,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="@string/versus"
                         android:textAlignment="center"
-                        android:textSize="16sp" />
+                        android:textSize="16sp"
+                        tools:text="@string/versus" />
 
                     <TextView
                         android:id="@+id/history_player_2"

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.tictactoe.R
 import com.example.tictactoe.data.db.GameEntity
 import com.example.tictactoe.databinding.FragmentHistoryBinding
+import com.example.tictactoe.domain.GameOutcome
 
 
 class History : Fragment() {
@@ -46,6 +48,24 @@ class History : Fragment() {
                     '2' -> imageView.setImageResource(R.drawable.ic_tictactoe_player2)
                 }
             }
+            val winnerView: TextView?
+            val loserView: TextView?
+            when(gameEntity?.outcome) {
+                GameOutcome.WIN_PLAYER_1 -> {
+                    winnerView = binding.historyPlayer1
+                    loserView  = binding.historyPlayer2
+                }
+                GameOutcome.WIN_PLAYER_2 -> {
+                    winnerView = binding.historyPlayer2
+                    loserView  = binding.historyPlayer1
+                }
+                else                     -> {
+                    winnerView = null
+                    loserView  = null
+                }
+            }
+            winnerView?.setBackgroundResource(android.R.color.holo_orange_light)
+            loserView?.setBackgroundResource(android.R.color.transparent)
         }
         viewModel.previousGames.observe(this, Observer<List<GameEntity>> { previousGames ->
             adapter.submitList(previousGames)

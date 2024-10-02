@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toStartOf="@+id/player_2_name"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Player 1" />
+        tools:text="@string/player_1" />
 
     <TextView
         android:id="@+id/player_2_name"
@@ -25,5 +25,5 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/player_1_name"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Player 2" />
+        tools:text="@string/player_2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

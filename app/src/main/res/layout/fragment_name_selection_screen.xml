@@ -35,7 +35,7 @@
                         android:id="@+id/p1_name_selection"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Player 1" />
+                        android:hint="@string/player_1" />
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
@@ -47,7 +47,7 @@
                         android:id="@+id/p2_name_selection"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:hint="Player 2" />
+                        android:hint="@string/player_2" />
                 </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
 
