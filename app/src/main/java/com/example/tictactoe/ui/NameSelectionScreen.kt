@@ -27,7 +27,7 @@ class NameSelectionScreen : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.playerNames.observe(this, Observer<Pair<String,String>> { (name1, name2) ->
+        viewModel.playerNames.observe(viewLifecycleOwner, Observer<Pair<String,String>> { (name1, name2) ->
             binding.p1NameSelection.setText(name1)
             binding.p2NameSelection.setText(name2)
         })

@@ -67,7 +67,7 @@ class History : Fragment() {
             winnerView?.setBackgroundResource(android.R.color.holo_orange_light)
             loserView?.setBackgroundResource(android.R.color.transparent)
         }
-        viewModel.previousGames.observe(this, Observer<List<GameEntity>> { previousGames ->
+        viewModel.previousGames.observe(viewLifecycleOwner, Observer<List<GameEntity>> { previousGames ->
             adapter.submitList(previousGames)
         })
     }

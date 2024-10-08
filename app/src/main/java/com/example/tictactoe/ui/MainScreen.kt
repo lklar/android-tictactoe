@@ -25,25 +25,25 @@ class MainScreen : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        viewModel.changedCell.observe(this, Observer<DrawableCell> { cell ->
+        viewModel.changedCell.observe(viewLifecycleOwner, Observer<DrawableCell> { cell ->
             getButtons(binding)[cell.id].setImageResource(cell.drawableId)
         })
 
-        viewModel.playerNames.observe(this, Observer<Pair<String, String>> { (name1, name2) ->
+        viewModel.playerNames.observe(viewLifecycleOwner, Observer<Pair<String, String>> { (name1, name2) ->
             binding.playerName1.text = name1
             binding.playerName2.text = name2
         })
 
-        viewModel.playerScores.observe(this, Observer<Pair<Int,Int>> { (score1, score2) ->
+        viewModel.playerScores.observe(viewLifecycleOwner, Observer<Pair<Int,Int>> { (score1, score2) ->
             binding.playerScore1.text = score1.toString()
             binding.playerScore2.text = score2.toString()
         })
 
-        viewModel.gameOutcome.observe(this, Observer<GameOutcome> { gameOutcome ->
+        viewModel.gameOutcome.observe(viewLifecycleOwner, Observer<GameOutcome> { gameOutcome ->
             findNavController().navigate(R.id.action_mainScreen_to_gameOutcomeDialog)
         })
 
-        viewModel.currentTurn.observe(this, Observer<PlayerTurn> { currentTurn ->
+        viewModel.currentTurn.observe(viewLifecycleOwner, Observer<PlayerTurn> { currentTurn ->
             when(currentTurn){
                 PlayerTurn.PLAYER_1 -> binding.currentTurnImage.setImageResource(R.drawable.ic_arrow_left)
                 PlayerTurn.PLAYER_2 -> binding.currentTurnImage.setImageResource(R.drawable.ic_arrow_right)
